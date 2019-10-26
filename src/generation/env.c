@@ -21,12 +21,12 @@ static double STAGE_PROGRESS;
 static double STAGE_RELEASE;
 
 static inline uint8_t
-Config(const LINE line)
+Config(const LINE* line)
 {
     uint8_t ret = 0;
 
-    const char* key = line.data.config.key;
-    const char* value = line.data.config.value;
+    const char* key = line->data.config.key;
+    const char* value = line->data.config.value;
     if (strcmp(key, "attack") == 0)
     {
         ret = GetRange(value, 1.0 / SAMPLING_RATE, DBL_MAX, 
@@ -65,7 +65,7 @@ Config(const LINE line)
     else
     {
         ret = 1;
-        ParserError("Invalid key", line.raw);
+        ParserError("Invalid key", line->raw);
     }
 
     return ret;

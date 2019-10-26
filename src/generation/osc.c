@@ -55,12 +55,12 @@ SawtoothWave(const double x)
 }
 
 static inline uint8_t
-Config(const LINE line)
+Config(const LINE* line)
 {
     uint8_t ret = 0;
     
-    const char* key = line.data.config.key;
-    const char* value = line.data.config.value;
+    const char* key = line->data.config.key;
+    const char* value = line->data.config.value;
     if (strcmp(key, "frequency") == 0 || strcmp(key, "detune") == 0)
     {
         if (key[0] == 'f')
@@ -77,7 +77,7 @@ Config(const LINE line)
         if (freq > SAMPLING_RATE / 2.0 || freq < 1)
         {
             ret = 1;
-            ParserError("Detuning beyond frequency range", line.raw); 
+            ParserError("Detuning beyond frequency range", line->raw); 
         }
     }
     else if (strcmp(key, "waveform") == 0)
@@ -102,7 +102,7 @@ Config(const LINE line)
     else
     {
         ret = 1;
-        ParserError("Invalid config key", line.raw); 
+        ParserError("Invalid config key", line->raw); 
     }
 
     return ret;

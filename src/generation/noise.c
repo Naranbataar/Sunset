@@ -9,11 +9,11 @@
 #include "components.h"
 
 static inline uint8_t
-Config(const LINE line)
+Config(const LINE* line)
 {
     uint8_t ret = 1;
     (void) line;
-    ParserError("Invalid key", line.raw);
+    ParserError("Invalid key", line->raw);
 
     return ret;
 }

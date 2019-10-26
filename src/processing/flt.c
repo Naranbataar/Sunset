@@ -135,12 +135,12 @@ UpdateCoeffs(void)
 }
 
 static inline uint8_t
-Config(const LINE line)
+Config(const LINE* line)
 {
     uint8_t ret = 0;
 
-    const char* key = line.data.config.key;
-    const char* value = line.data.config.value;
+    const char* key = line->data.config.key;
+    const char* value = line->data.config.value;
     if (strcmp(key, "frequency") == 0)
     {
         ret = GetRange(value, 1.0, SAMPLING_RATE / 2.0, 
@@ -171,7 +171,7 @@ Config(const LINE line)
     else
     {
         ret = 1;
-        ParserError("Invalid config key", line.raw);
+        ParserError("Invalid config key", line->raw);
     }
 
     if (ret == 0)

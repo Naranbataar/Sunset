@@ -133,7 +133,7 @@ GetLineByType(FILE* input, LINE* out, LINE_TYPE type, bool print)
 
 extern uint8_t
 Generator(const char* name, void (*const play)(void), 
-          uint8_t (*const config)(LINE))
+          uint8_t (*const config)(const LINE*))
 {
     uint8_t ret = SetCaller(name);
 
@@ -176,7 +176,7 @@ Generator(const char* name, void (*const play)(void),
                 printf("%s\n", line.raw);
                 if (strcmp(line.data.config.component, name) == 0)
                 {
-                    ret = config(line);
+                    ret = config(&line);
                 }
             }
             else if (line.type == LINE_TYPE_PCM)
@@ -206,7 +206,7 @@ Generator(const char* name, void (*const play)(void),
 
 extern uint8_t
 Processor(const char* name, void (*const process)(const double), 
-          uint8_t (*const config)(const LINE))
+          uint8_t (*const config)(const LINE*))
 {
     uint8_t ret = SetCaller(name);
 
@@ -225,7 +225,7 @@ Processor(const char* name, void (*const process)(const double),
                 printf("%s\n", line.raw);
                 if (strcmp(line.data.config.component, name) == 0)
                 {
-                    ret = config(line);
+                    ret = config(&line);
                 }
             }
             else if (line.type == LINE_TYPE_PCM)

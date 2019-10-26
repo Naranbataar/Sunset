@@ -14,8 +14,8 @@ uint8_t GetLineByType(FILE* input, LINE* out, LINE_TYPE type,
                       bool print);
 
 uint8_t Generator(const char* name, void (*play)(void), 
-                  uint8_t (*config)(LINE));
+                  uint8_t (*config)(const LINE*));
 uint8_t Processor(const char* name, void (*process)(double), 
-                  uint8_t (*config)(LINE));
+                  uint8_t (*config)(const LINE*));
 uint8_t Mixer(const char* file, void (*mix)(double, double)); 
 #endif
