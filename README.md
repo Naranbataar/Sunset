@@ -12,12 +12,12 @@ You need just a C compiler with the default libraries, and make
 ## Usage
 There are 3 types of inputs  
 #### CONFIG (ex: #component key value)  
-- Configures component variables    
-#### EVENT (@name value)  
-The only defailt event is @play, that is handled by generators,   
-and accepts seconds or `-` (one frame) as an argument  
-#### VALUE  (0.5)  
-- Usually PCM audio, numeric input  
+Configures component variables    
+#### EVENT (ex: @name value)  
+The only default event is @play, that is handled by generators,   
+and accepts seconds or `-` (one frame) as its value  
+#### VALUE  (ex: 0.5)
+Usually PCM audio, numeric input  
 
 Components can be piped together, `sunset` or `sunset COMPONENT` to read more  
 
